@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py collectstatic --noinput && gunicorn faq_project.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - ./staticfiles:/app/staticfiles
+    expose:
+      - 8000
+    networks:
+      - app_network
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6380:6379"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
