@@ -5,8 +5,8 @@ from .models import FAQ
 
 @pytest.mark.django_db
 def test_faq_creation():
-    faq = FAQ.objects.create(question="What is Django?", answer="A web framework.")
-    assert faq.question == "What is Django?"
+    faq = FAQ.objects.create(question="How is it going?", answer="Better than anytime.")
+    assert faq.question == "How is it going?"
 
 
 @pytest.mark.django_db
